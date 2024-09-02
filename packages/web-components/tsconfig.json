@@ -1,4 +1,12 @@
 {
-  "extends": "@repo/typescript-config/web-components.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "baseUrl": "src"
+  },
   "include": ["src"]
 }
