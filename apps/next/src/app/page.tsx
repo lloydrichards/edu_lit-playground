@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Card } from "../../../../packages/ui/src/card";
+import { Card } from "@repo/ui/card";
 
 function Gradient({
   conic,
