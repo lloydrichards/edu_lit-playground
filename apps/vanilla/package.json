@@ -9,6 +9,10 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "@repo/web-components": "workspace:*",
+    "@repo/ui": "workspace:*"
+  },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/tailwind-config": "*",

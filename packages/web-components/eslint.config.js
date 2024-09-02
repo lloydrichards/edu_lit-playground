@@ -4,7 +4,7 @@ import globals from "globals";
 const config = [
   js.configs.recommended,
   {
-    files: ["**/*.js"],
+    files: ["src/**/*.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
