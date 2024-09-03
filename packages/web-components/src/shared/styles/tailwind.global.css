@@ -9,18 +9,45 @@
   h1 {
     @apply text-3xl;
   }
-  :root {
-    --red: 28;
-    --green: 150;
-    --blue: 130;
+  :host {
+    --color-charcoal: 0 0% 13%; /* hsl(0, 0%, 13%) */
+    --color-white: 0 0% 100%; /* hsl(0, 0%, 100%) */
+    --color-neutral: 0 0% 47%; /* hsl(0, 0%, 47%) */
+    --color-grey_brown: 0 0% 61%; /* hsl(0, 0%, 61%) */
+    --color-dark_grey: 205 14% 66%; /* hsl(205, 14%, 66%) */
+    --color-light_grey: 0 0% 97%; /* hsl(0, 0%, 97%) */
 
-    --accessible-color: calc(
-      (
-          (
-              ((var(--red) * 299) + (var(--green) * 587) + (var(--blue) * 114)) /
-                1000
-            ) - 128
-        ) * -1000
-    );
+    --color-dark_blue: 207 100% 25%; /* hsl(207, 100%, 25%) */
+    --color-blue: 204 64% 43%; /* hsl(204, 64%, 43%) */
+    --color-olive: 79 40% 40%; /* hsl(79, 40%, 40%) */
+    --color-yellow: 42 84% 49%; /* hsl(42, 84%, 49%) */
+    --color-orange: 21 72% 51%; /* hsl(21, 72%, 51%) */
+    --color-red: 9 70% 48%; /* hsl(9, 70%, 48%) */
+
+    --color-emerald: 175 67% 34%; /* hsl(175, 67%, 34%) */
+    --color-bright_green: 123 56% 59%; /* hsl(123, 56%, 59%) */
+    --color-bright_red: 360 99% 64%; /* hsl(360, 99%, 64%) */
+    --color-turquoise: 196 97% 73%; /* hsl(196, 97%, 73%) */
+    --color-purple: 259 60% 51%; /* hsl(259, 60%, 51%) */
+    --color-bright_yellow: 46 92% 62%; /* hsl(46, 92%, 62%) */
+
+    --background: var(--color-white);
+    --foreground: var(--color-charcoal);
+    --accent: var(--color-neutral);
+    --accent-foreground: var(--color-charcoal);
+    --popover: var(--color-light_grey);
+    --popover-foreground: var(--color-charcoal);
+    --primary: var(--color-dark_blue);
+    --primary-foreground: var(--color-white);
+    --secondary: var(--color-light_grey);
+    --secondary-foreground: var(--color-charcoal);
+    --destructive: var(--color-red);
+    --destructive-foreground: var(--color-white);
+    --muted: var(--color-neutral);
+    --border: var(--color-blue);
+    --input: var(--color-blue);
+    --ring: var(--color-blue);
+
+    --radius: 1rem;
   }
 }
