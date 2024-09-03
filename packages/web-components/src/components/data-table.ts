@@ -1,7 +1,10 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
+import * as React from "react";
+
 import { TW } from "../shared/tailwindMixin";
+import { createComponent } from "@lit/react";
 
 const TwLitElement = TW(LitElement);
 
@@ -74,6 +77,13 @@ export class DataTable extends TwLitElement {
     `;
   }
 }
+
+export const DataTableReact = createComponent({
+  react: React,
+  elementClass: DataTable,
+  tagName: "data-table",
+  displayName: "DataTable",
+});
 
 declare global {
   interface HTMLElementTagNameMap {

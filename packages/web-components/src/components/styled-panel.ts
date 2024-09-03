@@ -1,8 +1,9 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-
+import * as React from "react";
 import { TW } from "../shared/tailwindMixin";
 import { when } from "lit-html/directives/when.js";
+import { createComponent } from "@lit/react";
 
 const TwLitElement = TW(LitElement);
 
@@ -63,6 +64,16 @@ export class StyledPanel extends TwLitElement {
     this.open = !this.open;
   };
 }
+
+export const StyledPanelReact = createComponent({
+  react: React,
+  tagName: "styled-panel",
+  elementClass: StyledPanel,
+  displayName: "StyledPanel",
+  events: {
+    onToggle: "toggle",
+  },
+});
 
 declare global {
   interface HTMLElementTagNameMap {

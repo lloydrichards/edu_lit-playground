@@ -1,3 +1,3 @@
-export { StyledButton } from "./components/styled-button";
-export { StyledPanel } from "./components/styled-panel";
-export { DataTable } from "./components/data-table";
+export { StyledButton, StyledButtonReact } from "./components/styled-button";
+export { StyledPanel, StyledPanelReact } from "./components/styled-panel";
+export { DataTable, DataTableReact } from "./components/data-table";

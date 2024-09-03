@@ -7,7 +7,9 @@ export default defineConfig({
       entry: "src/index.ts",
       formats: ["es"],
     },
-    rollupOptions: {},
+    rollupOptions: {
+      external: ["react", "react/jsx-runtime"],
+    },
     commonjsOptions: {
       esmExternals: true,
     },

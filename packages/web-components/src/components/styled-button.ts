@@ -1,8 +1,10 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
+import * as React from "react";
 import { TW } from "../shared/tailwindMixin";
 import { cva, VariantProps } from "class-variance-authority";
+import { createComponent } from "@lit/react";
 
 const TwLitElement = TW(LitElement);
 
@@ -56,6 +58,13 @@ export class StyledButton extends TwLitElement {
     this._isClicked = !this._isClicked;
   }
 }
+
+export const StyledButtonReact = createComponent({
+  react: React,
+  tagName: "styled-button",
+  elementClass: StyledButton,
+  displayName: "StyledButton",
+});
 
 declare global {
   interface HTMLElementTagNameMap {
