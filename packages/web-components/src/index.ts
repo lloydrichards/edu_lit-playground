@@ -1,1 +1,1 @@
-export { MyButton } from "./my-button/my-button";
+export { StyledButton } from "./styled-button/styled-button";

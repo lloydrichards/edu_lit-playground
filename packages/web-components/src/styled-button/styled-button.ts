@@ -32,8 +32,8 @@ const buttonVariants = cva(
   }
 );
 
-@customElement("my-button")
-export class MyButton extends TwLitElement {
+@customElement("styled-button")
+export class StyledButton extends TwLitElement {
   @property() name: string = "";
   @property() _isClicked: boolean = false;
   @property() variant: VariantProps<typeof buttonVariants>["variant"] =
@@ -42,20 +42,13 @@ export class MyButton extends TwLitElement {
 
   render() {
     return html`
-      <div class="flex flex-col gap-2 justify-center items-center ">
-        <p
-          class="text-3xl font-bold underline underline-offset-4 decoration-orange-500"
-        >
-          Hello, ${this.name}!
-        </p>
-        <button
-          class="${buttonVariants({ size: this.size, variant: this.variant })} "
-          part="button"
-          @click=${this._onClick}
-        >
-          ${this._isClicked ? "Clicked" : "Click me"}
-        </button>
-      </div>
+      <button
+        class="${buttonVariants({ size: this.size, variant: this.variant })} "
+        part="button"
+        @click=${this._onClick}
+      >
+        ${this._isClicked ? "Clicked" : `Click me, ${this.name}`}
+      </button>
     `;
   }
 
