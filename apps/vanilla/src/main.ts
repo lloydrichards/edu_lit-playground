@@ -3,7 +3,7 @@ import typescriptLogo from "./typescript.svg";
 import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter";
 
-import * as B from "@repo/web-components/button";
+import "@repo/web-components";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
@@ -20,6 +20,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     <p class="read-the-docs">
       Click on the Vite and TypeScript logos to learn more
     </p>
+    <my-button name="world"></my-button
   </div>
 `;
 
