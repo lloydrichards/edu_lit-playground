@@ -34,8 +34,8 @@ const buttonVariants = cva(
 
 @customElement("styled-button")
 export class StyledButton extends TwLitElement {
-  @property() name: string = "";
-  @property() _isClicked: boolean = false;
+  @property({ type: String }) name = "";
+  @property({ type: Boolean }) _isClicked = false;
   @property() variant: VariantProps<typeof buttonVariants>["variant"] =
     "primary";
   @property() size: VariantProps<typeof buttonVariants>["size"] = "default";
@@ -54,5 +54,11 @@ export class StyledButton extends TwLitElement {
 
   private _onClick() {
     this._isClicked = !this._isClicked;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "styled-button": StyledButton;
   }
 }

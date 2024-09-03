@@ -63,3 +63,9 @@ export class StyledPanel extends TwLitElement {
     this.open = !this.open;
   };
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "styled-panel": StyledPanel;
+  }
+}
