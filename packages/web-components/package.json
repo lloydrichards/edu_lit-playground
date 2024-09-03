@@ -14,7 +14,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "lint": "eslint src",
-    "dev": "vite",
+    "dev": "rm -rf dist && tsc && vite build --watch",
+    "dev:local": "vite",
     "preview": "vite preview"
   },
   "dependencies": {
