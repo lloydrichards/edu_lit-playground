@@ -362,3 +362,135 @@ component.
 ```bash
 bun run dev
 ```
+
+## BONUS: make tailwind more useful
+
+Up to this point, you have successfully integrated Tailwind CSS with your Lit
+and Vite project. However, you can make it more useful by adding some utilities
+and extending the theme similar to how its done using shadcn/ui.
+
+First, install the required dependencies:
+
+```bash
+bun add class-variance-authority tailwind-merge clsx
+```
+
+Then lets create a `utils.ts` file in the `lib/shared` directory and add the
+following:
+
+```typescript
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+Next we want to update out vscode settings to use Tailwind CSS IntelliSense and
+add the classRegex to the settings.
+
+```json
+{
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ]
+}
+```
+
+Now we can extend the theme in the `tailwind.config.js` file similar to how its
+done in shadcn/ui:
+
+```diff
+ /** @type {import('tailwindcss').Config} */
+ export default {
+   content: ["lib/**/*.{ts,html,css,scss}"],
++  theme: {
++    extend: {
++      colors: {
++        border: "hsl(var(--border))",
++        input: "hsl(var(--input))",
++        ring: "hsl(var(--ring))",
++        background: "hsl(var(--background))",
++        foreground: "hsl(var(--foreground))",
++        primary: {
++          DEFAULT: "hsl(var(--primary))",
++          foreground: "hsl(var(--primary-foreground))",
++        },
++        secondary: {
++          DEFAULT: "hsl(var(--secondary))",
++          foreground: "hsl(var(--secondary-foreground))",
++        },
++        destructive: {
++          DEFAULT: "hsl(var(--destructive))",
++          foreground: "hsl(var(--destructive-foreground))",
++        },
++      },
++    },
++  },
+   plugins: [],
+ };
+```
+
+Next we can update the `tailwind.global.css` file to use the
+[pseudo-private properties](https://lea.verou.me/blog/2021/10/custom-properties-with-defaults/)
+that can be overridden by user defined css variables:
+
+```diff
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+
++@layer components {
++  :host {
++    --_background: var(--background, 0 0% 100%);
++    --_foreground: var(--foreground, 222.2 47.4% 11.2%);
++
++    --_primary: var(--primary, 222.2 47.4% 11.2%);
++    --_primary-foreground: var(--primary-foreground, 210 40% 98%);
++
++    --_secondary: var(--secondary210 40% 96.1%);
++    --_secondary-foreground: var(--secondary-foreground, 222.2 47.4% 11.2%);
++
++    --_destructive: var(--destructive, 0 100% 50%);
++    --_destructive-foreground: var(--destructive-foreground, 210 40% 98%);
++
++    --_border: var(--border, 214.3 31.8% 91.4%);
++    --_input: var(--input, 214.3 31.8% 91.4%);
++    --_ring: var(--ring, 215 20.2% 65.1%);
++
++    --_radius: var(--radius, 0.5rem);
++  }
++}
++
++@layer base {
++  * {
++    @apply border-border;
++  }
++}
+```
+
+This setup allows you to use the `cva` function to apply variants that combine
+tailwind classes into more meaningful classes and then control the theme using
+css variables.
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <script type="module" src="/lib/main.ts"></script>
+  </head>
+  <body>
+    <style>
+      :root {
+        --destructive: 6 93% 71%;
+        --destructive-foreground: 0 0 0%;
+      }
+    </style>
+    <my-element variant="destructive" size="lg">
+      <h1>Vite + Lit</h1>
+    </my-element>
+  </body>
+</html>
+```

@@ -9,7 +9,13 @@
     <script type="module" src="/lib/main.ts"></script>
   </head>
   <body>
-    <my-element>
+    <style>
+      :root {
+        --destructive: 6 93% 71%;
+        --destructive-foreground: 0 0 0%;
+      }
+    </style>
+    <my-element variant="destructive" size="lg">
       <h1>Vite + Lit</h1>
     </my-element>
   </body>

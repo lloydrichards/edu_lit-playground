@@ -4,13 +4,42 @@ import litLogo from "../assets/lit.svg";
 import viteLogo from "/vite.svg";
 
 import { TW } from "../shared/tailwindMixin";
+import { cva, VariantProps } from "class-variance-authority";
+import { cn } from "../shared/utils";
 
 const TwLitElement = TW(LitElement);
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        lg: "h-11 rounded-md px-8",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
 
 @customElement("my-element")
 export class MyElement extends TwLitElement {
   @property() docsHint = "Click on the Vite and Lit logos to learn more";
   @property({ type: Number }) count = 0;
+  @property({ type: String }) variant: VariantProps<
+    typeof buttonVariants
+  >["variant"] = "default";
+  @property({ type: String }) size: VariantProps<
+    typeof buttonVariants
+  >["size"] = "default";
 
   render() {
     return html`
@@ -26,7 +55,9 @@ export class MyElement extends TwLitElement {
         <slot></slot>
         <div class="px-8">
           <button
-            class="rounded-lg w-full border border-purple-800 px-5 py-3 font-bold cursor-pointer"
+            class="${cn(
+              buttonVariants({ variant: this.variant, size: this.size })
+            )}"
             @click=${this._onClick}
             part="button"
           >
