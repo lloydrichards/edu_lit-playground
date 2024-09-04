@@ -5,6 +5,7 @@ import {
   StyledButtonReact,
   StyledPanelReact,
   DataTableReact,
+  BarChartReact,
 } from "@repo/web-components";
 
 function App() {
@@ -23,6 +24,15 @@ function App() {
       </StyledPanelReact>
       <DataTableReact data={[{ category: "A", value: 1 }]} />
       <StyledButtonReact name="Please"></StyledButtonReact>
+      <BarChartReact
+        data={[
+          { category: "A", value: 1 },
+          { category: "B", value: 2 },
+          { category: "C", value: 3 },
+          { category: "D", value: 4 },
+          { category: "E", value: 5 },
+        ]}
+      />
     </main>
   );
 }

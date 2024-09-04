@@ -51,3 +51,9 @@
     --radius: 1rem;
   }
 }
+
+@layer utilities {
+  .prototype {
+    @apply ring-2 ring-destructive;
+  }
+}

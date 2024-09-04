@@ -15,8 +15,6 @@
     "strictPropertyInitialization": false,
     "strictFunctionTypes": false,
     "noImplicitThis": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "bundler",
@@ -31,7 +29,7 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "lib"],
+  "include": [".eslintrc.cjs", "src", "lib"],
   "exclude": ["src/**/*.stories.ts"]
 }
 

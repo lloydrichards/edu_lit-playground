@@ -3,22 +3,22 @@ import { customElement, property } from "lit/decorators.js";
 
 import * as React from "react";
 import { TW } from "../shared/tailwindMixin";
-import { cva, VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { createComponent } from "@lit/react";
 
 const TwLitElement = TW(LitElement);
 
 const buttonVariants = cva(
-  "inline-flex items-center text-primary uppercase justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "text-primary ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap uppercase transition-colors focus-visible:outline-none focus-visible:ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         primary:
-          "rounded bg-primary text-primary-foreground hover:bg-primary/80",
+          "bg-primary text-primary-foreground hover:bg-primary/80 rounded",
         secondary:
-          "rounded bg-background text-primary hover:bg-accent hover:text-accent-foreground",
+          "bg-background text-primary hover:bg-accent hover:text-accent-foreground rounded",
         ghost: "hover:bg-accent",
-        link: "text-foreground underline decoration-tertiary underline-offset-4 hover:bg-tertiary hover:text-tertiary-foreground hover:no-underline",
+        link: "text-foreground decoration-tertiary hover:bg-tertiary hover:text-tertiary-foreground underline underline-offset-4 hover:no-underline",
       },
       size: {
         default: "px-4 py-3",
@@ -47,7 +47,7 @@ export class StyledButton extends TwLitElement {
       <button
         class="${buttonVariants({ size: this.size, variant: this.variant })} "
         part="button"
-        @click=${this._onClick}
+        @click=${() => this._onClick()}
       >
         ${this._isClicked ? "Clicked" : `Click me, ${this.name}`}
       </button>
