@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 
 const config = {
   plugins: [require("tailwindcss-animate")],
-  content: ["src/**/*.{ts,html,css,scss}"],
+  content: ["lib/**/*.{ts,html,css,scss}"],
   theme: {
     colors: {
       current: "currentColor",
