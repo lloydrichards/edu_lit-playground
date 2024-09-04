@@ -10,10 +10,6 @@ const stylesheet = unsafeCSS(style);
 
 export const TW = <T extends LitMixin>(superClass: T): T =>
   class extends superClass {
-    /* Look at theme and add all classes that line up with dynamic values. Not supporting default theme stuff, only specific theme defined.
-     ** font: caption = 'font-sans text-base font-normal uppercase'
-     ** color: bg-{colors}
-     */
     connectedCallback() {
       super.connectedCallback();
       if (this.shadowRoot) adoptStyles(this.shadowRoot, [stylesheet]);
