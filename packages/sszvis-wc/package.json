@@ -1,8 +1,18 @@
 {
   "name": "sszvis-web-components",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/my-element.umd.cjs",
+  "module": "./dist/my-element.js",
+  "exports": {
+    ".": {
+      "import": "./dist/my-element.js",
+      "require": "./dist/my-element.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite ",
     "build": "tsc && vite build",
@@ -13,6 +23,8 @@
   },
   "devDependencies": {
     "typescript": "^5.5.3",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-plugin-dts": "^4.1.0",
+    "vite-tsconfig-paths": "^5.0.1"
   }
 }
