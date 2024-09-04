@@ -78,6 +78,35 @@ And modify the `index.html` file to point to the `lib/my-element.ts` file.
   </head>
 ```
 
+Finally, modify the `tsconfig.json` file to point to the `lib` directory.
+
+```diff
+ {
+   "compilerOptions": {
+     "target": "ES2020",
+     "experimentalDecorators": true,
+     "useDefineForClassFields": false,
+     "module": "ESNext",
+     "lib": ["ES2020", "DOM", "DOM.Iterable"],
+     "skipLibCheck": true,
+
+     /* Bundler mode */
+     "moduleResolution": "bundler",
+     "allowImportingTsExtensions": true,
+     "isolatedModules": true,
+     "moduleDetection": "force",
+     "noEmit": true,
+
+     /* Linting */
+     "strict": true,
+     "noUnusedLocals": true,
+     "noUnusedParameters": true,
+     "noFallthroughCasesInSwitch": true
+   },
++  "include": ["src", "lib"]
+ }
+```
+
 ## 3. Create a vite.config.ts file
 
 First lets install the required dependencies:
@@ -179,4 +208,96 @@ Finally, update the `package.json` file to point to the `dist/` files.
     "vite-tsconfig-paths": "^5.0.1"
   }
 }
+```
+
+## 4. Add Tailwind CSS
+
+First install the required dependencies:
+
+```bash
+bun add -D tailwindcss@latest postcss@latest autoprefixer@latest
+```
+
+Then run the following command to generate the `tailwind.config.js` and
+`postcss.config.js` files:
+
+```bash
+npx tailwindcss init -p
+```
+
+Now update the `tailwind.config.js` file to generate content from the `lib`
+directory:
+
+```diff
+ /** @type {import('tailwindcss').Config} */
+ export default {
++  content: ["lib/**/*.{ts,html,css,scss}"],
+   theme: {
+     extend: {},
+   },
+   plugins: [],
+ }
+```
+
+In the `lib` directory, create a `shared` folder and add two files:
+`tailwindMixin.ts` and `tailwindMixin.d.ts`. and create a `styles` folder and
+add a new file `tailwind.global.css`.
+
+```diff
+ .
+ ├── 📂 lib
+ │   ├── 📁 assets
+ │   ├── 📂 components
+ │   │   └── my-element.ts
++│   ├── 📂 shared
++│   │   ├── tailwindMixin.d.ts
++│   │   └── tailwindMixin.ts
++│   ├── 📂 styles
++│   │   └── tailwind.global.css
+ │   └── main.ts
+ ├── 📁 public
+ ├── 📁 src
+ ├── .gitignore
+ ├── package.json
+ └── tsconfig.json
+```
+
+### tailwindMixin.ts
+
+```typescript
+import { adoptStyles, type LitElement, unsafeCSS } from "lit";
+import style from "../styles/tailwind.global.css?inline";
+
+declare global {
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  export type LitMixin<T = unknown> = new (...args: any[]) => T & LitElement;
+}
+
+const stylesheet = unsafeCSS(style);
+
+export const TW = <T extends LitMixin>(superClass: T): T =>
+  class extends superClass {
+    connectedCallback() {
+      super.connectedCallback();
+      if (this.shadowRoot) adoptStyles(this.shadowRoot, [stylesheet]);
+    }
+  };
+```
+
+### tailwindMixin.d.ts
+
+```typescript
+import { type LitElement } from "lit";
+declare global {
+  export type LitMixin<T = unknown> = new (...args: any[]) => T & LitElement;
+}
+export declare const TW: <T extends LitMixin>(superClass: T) => T;
+```
+
+### tailwind.global.css
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 ```
