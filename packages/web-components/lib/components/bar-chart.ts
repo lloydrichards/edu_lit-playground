@@ -17,8 +17,6 @@ type Datum = {
 
 @customElement("bar-chart")
 export class BarChart extends TwLitElement {
-  @state() private _width = 0;
-  @state() private _height = 0;
   @state() private _innerWidth = 0;
   @state() private _innerHeight = 0;
 
@@ -26,7 +24,7 @@ export class BarChart extends TwLitElement {
     top: 10,
     right: 10,
     bottom: 48,
-    left: 24,
+    left: 28,
   };
 
   @property({ type: Array }) data: Array<Datum> = [];
@@ -45,20 +43,22 @@ export class BarChart extends TwLitElement {
       .range([0, this._innerHeight]);
   }
 
-  private _resizeController = new ResizeController(this, {});
+  private _resizeController = new ResizeController<DOMRectReadOnly>(this, {
+    callback: (entry) => entry[entry.length - 1].contentRect,
+  });
 
   render() {
-    this._width = this.getBoundingClientRect().width;
-    this._height = this.getBoundingClientRect().height;
-    this._innerWidth = this._width - this.padding.left - this.padding.right;
-    this._innerHeight = this._height - this.padding.top - this.padding.bottom;
+    const width = this._resizeController.value?.width ?? 0;
+    const height = this._resizeController.value?.height ?? 0;
+    this._innerWidth = width - this.padding.left - this.padding.right;
+    this._innerHeight = height - this.padding.top - this.padding.bottom;
 
     const xScale = this.getXScale();
     const yScale = this.getYScale();
 
     return html`
       <div class="w-[90vw] h-[20rem]">
-        <svg width="${this._width}" height="${this._height}" class="">
+        <svg width="${width}" height="${height}" class="">
           <g transform="translate(${this.padding.left}, ${this.padding.top})">
             <g>
               ${this.data.map((d, i) => {
