@@ -5,12 +5,29 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + TS</title>
+    <script type="module" src="/src/main.ts"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <p>DataTable</p>
-    <data-table> </data-table>
-    <bar-chart></bar-chart>
-    <script type="module" src="/src/main.ts"></script>
+    <h1>BEV327V3270</h1>
+    <sszvis-line-chart
+      dataSrc="./src/data/BEV327V3270.csv"
+      title="Bevölkerungsentwicklung"
+      description=""
+      xCol="Jahr"
+      yCol="Anzahl"
+      cCol="Bevoelkerungsdefinition"
+      ticks="5"
+    ></sszvis-line-chart>
+    <h1>BEV343V3430</h1>
+    <sszvis-line-chart
+      dataSrc="./src/data/BEV343V3430.csv"
+      title="Bevölkerungsentwicklung"
+      description=""
+      xCol="Jahr"
+      yCol="Anzahl"
+      cCol="Szenario"
+      yLabel="Anzahl (Personen)"
+      ticks="5"
+    ></sszvis-line-chart>
   </body>
 </html>

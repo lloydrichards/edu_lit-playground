@@ -1,0 +1,205 @@
+Jahr,Szenario,Anzahl
+1995,Bestand,360826
+1995,unteres Szenario,
+1995,mittleres Szenario,
+1995,oberes Szenario,
+1996,Bestand,359648
+1996,unteres Szenario,
+1996,mittleres Szenario,
+1996,oberes Szenario,
+1997,Bestand,358594
+1997,unteres Szenario,
+1997,mittleres Szenario,
+1997,oberes Szenario,
+1998,Bestand,359073
+1998,unteres Szenario,
+1998,mittleres Szenario,
+1998,oberes Szenario,
+1999,Bestand,360704
+1999,unteres Szenario,
+1999,mittleres Szenario,
+1999,oberes Szenario,
+2000,Bestand,360980
+2000,unteres Szenario,
+2000,mittleres Szenario,
+2000,oberes Szenario,
+2001,Bestand,362042
+2001,unteres Szenario,
+2001,mittleres Szenario,
+2001,oberes Szenario,
+2002,Bestand,364558
+2002,unteres Szenario,
+2002,mittleres Szenario,
+2002,oberes Szenario,
+2003,Bestand,364528
+2003,unteres Szenario,
+2003,mittleres Szenario,
+2003,oberes Szenario,
+2004,Bestand,364977
+2004,unteres Szenario,
+2004,mittleres Szenario,
+2004,oberes Szenario,
+2005,Bestand,366809
+2005,unteres Szenario,
+2005,mittleres Szenario,
+2005,oberes Szenario,
+2006,Bestand,370062
+2006,unteres Szenario,
+2006,mittleres Szenario,
+2006,oberes Szenario,
+2007,Bestand,376815
+2007,unteres Szenario,
+2007,mittleres Szenario,
+2007,oberes Szenario,
+2008,Bestand,380499
+2008,unteres Szenario,
+2008,mittleres Szenario,
+2008,oberes Szenario,
+2009,Bestand,382906
+2009,unteres Szenario,
+2009,mittleres Szenario,
+2009,oberes Szenario,
+2010,Bestand,385468
+2010,unteres Szenario,
+2010,mittleres Szenario,
+2010,oberes Szenario,
+2011,Bestand,390082
+2011,unteres Szenario,
+2011,mittleres Szenario,
+2011,oberes Szenario,
+2012,Bestand,394012
+2012,unteres Szenario,
+2012,mittleres Szenario,
+2012,oberes Szenario,
+2013,Bestand,398575
+2013,unteres Szenario,
+2013,mittleres Szenario,
+2013,oberes Szenario,
+2014,Bestand,404783
+2014,unteres Szenario,
+2014,mittleres Szenario,
+2014,oberes Szenario,
+2015,Bestand,410404
+2015,unteres Szenario,
+2015,mittleres Szenario,
+2015,oberes Szenario,
+2016,Bestand,415682
+2016,unteres Szenario,
+2016,mittleres Szenario,
+2016,oberes Szenario,
+2017,Bestand,423310
+2017,unteres Szenario,
+2017,mittleres Szenario,
+2017,oberes Szenario,
+2018,Bestand,428737
+2018,unteres Szenario,
+2018,mittleres Szenario,
+2018,oberes Szenario,
+2019,Bestand,434008
+2019,unteres Szenario,
+2019,mittleres Szenario,
+2019,oberes Szenario,
+2020,Bestand,434736
+2020,unteres Szenario,
+2020,mittleres Szenario,
+2020,oberes Szenario,
+2021,Bestand,436332
+2021,unteres Szenario,
+2021,mittleres Szenario,
+2021,oberes Szenario,
+2022,Bestand,443037
+2022,unteres Szenario,443037
+2022,mittleres Szenario,443037
+2022,oberes Szenario,443037
+2023,Bestand,
+2023,unteres Szenario,449600
+2023,mittleres Szenario,451600
+2023,oberes Szenario,453100
+2024,Bestand,
+2024,unteres Szenario,455600
+2024,mittleres Szenario,459200
+2024,oberes Szenario,462100
+2025,Bestand,
+2025,unteres Szenario,461800
+2025,mittleres Szenario,467000
+2025,oberes Szenario,471300
+2026,Bestand,
+2026,unteres Szenario,467000
+2026,mittleres Szenario,473900
+2026,oberes Szenario,479500
+2027,Bestand,
+2027,unteres Szenario,471000
+2027,mittleres Szenario,480500
+2027,oberes Szenario,487400
+2028,Bestand,
+2028,unteres Szenario,472700
+2028,mittleres Szenario,484000
+2028,oberes Szenario,492800
+2029,Bestand,
+2029,unteres Szenario,474300
+2029,mittleres Szenario,487700
+2029,oberes Szenario,498300
+2030,Bestand,
+2030,unteres Szenario,476000
+2030,mittleres Szenario,491400
+2030,oberes Szenario,503600
+2031,Bestand,
+2031,unteres Szenario,477400
+2031,mittleres Szenario,494800
+2031,oberes Szenario,508700
+2032,Bestand,
+2032,unteres Szenario,478400
+2032,mittleres Szenario,497600
+2032,oberes Szenario,513100
+2033,Bestand,
+2033,unteres Szenario,479500
+2033,mittleres Szenario,500600
+2033,oberes Szenario,517500
+2034,Bestand,
+2034,unteres Szenario,480400
+2034,mittleres Szenario,503200
+2034,oberes Szenario,521700
+2035,Bestand,
+2035,unteres Szenario,481300
+2035,mittleres Szenario,505500
+2035,oberes Szenario,525800
+2036,Bestand,
+2036,unteres Szenario,482100
+2036,mittleres Szenario,507700
+2036,oberes Szenario,529500
+2037,Bestand,
+2037,unteres Szenario,482900
+2037,mittleres Szenario,509800
+2037,oberes Szenario,533100
+2038,Bestand,
+2038,unteres Szenario,483600
+2038,mittleres Szenario,511800
+2038,oberes Szenario,536500
+2039,Bestand,
+2039,unteres Szenario,484300
+2039,mittleres Szenario,513700
+2039,oberes Szenario,539800
+2040,Bestand,
+2040,unteres Szenario,485000
+2040,mittleres Szenario,515600
+2040,oberes Szenario,543000
+2041,Bestand,
+2041,unteres Szenario,485600
+2041,mittleres Szenario,517400
+2041,oberes Szenario,546000
+2042,Bestand,
+2042,unteres Szenario,486300
+2042,mittleres Szenario,519100
+2042,oberes Szenario,549000
+2043,Bestand,
+2043,unteres Szenario,486900
+2043,mittleres Szenario,520700
+2043,oberes Szenario,551800
+2044,Bestand,
+2044,unteres Szenario,487400
+2044,mittleres Szenario,522300
+2044,oberes Szenario,554500
+2045,Bestand,
+2045,unteres Szenario,488000
+2045,mittleres Szenario,523900
+2045,oberes Szenario,557100

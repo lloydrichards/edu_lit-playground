@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@repo/web-components": "workspace:*",
+    "@repo/sszvis-web-components": "workspace:*",
     "@repo/ui": "workspace:*"
   },
   "devDependencies": {

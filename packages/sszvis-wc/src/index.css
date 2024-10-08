@@ -1,5 +1,6 @@
 body {
-  margin: 2rem;
+  margin: rem;
   display: flex;
+  gap: 4rem;
   flex-direction: column;
 }
