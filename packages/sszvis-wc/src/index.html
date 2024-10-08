@@ -9,42 +9,54 @@
     <script type="module" src="/lib/main.ts"></script>
   </head>
   <body>
-    <h1>basic line chart</h1>
-    <basic-line-chart
-      dataSrc="./data/BEV327V3270.csv"
-      title="Bevölkerungsentwicklung"
-      description=""
-      xCol="Jahr"
-      yCol="Anzahl"
-      cCol="Bevoelkerungsdefinition"
-      yLabel="Anzahl (Personen)"
-      xLabel="Jahr (Zeit)"
-      ticks="5"
-      padding='{"top":8,"right":8,"bottom":24,"left":86}'
-    ></basic-line-chart>
-    <h1>sszvis line chart</h1>
-    <sszvis-line-chart
-      dataSrc="./data/BEV327V3270.csv"
-      title="Bevölkerungsentwicklung"
-      description=""
-      xCol="Jahr"
-      yCol="Anzahl"
-      cCol="Bevoelkerungsdefinition"
-      yLabel="Anzahl (Personen)"
-      xLabel="Jahr (Zeit)"
-      ticks="5"
-    ></sszvis-line-chart>
-    <h1>sszvis line chart Version 2</h1>
-    <sszvis-line-chart
-      dataSrc="./data/BEV327V3270.csv"
-      title="Bevölkerungsentwicklung"
-      description=""
-      xCol="Jahr"
-      yCol="Anzahl"
-      cCol="Bevoelkerungsdefinition"
-      yLabel="Anzahl (Personen)"
-      xLabel="Jahr (Zeit)"
-    ></sszvis-line-chart>
+    <!-- add an accordion -->
+    <details>
+      <summary>basic line chart</summary>
+      <basic-line-chart
+        dataSrc="./data/BEV327V3270.csv"
+        title="Bevölkerungsentwicklung"
+        description=""
+        xCol="Jahr"
+        yCol="Anzahl"
+        cCol="Bevoelkerungsdefinition"
+        yLabel="Anzahl (Personen)"
+        xLabel="Jahr (Zeit)"
+        ticks="5"
+        padding='{"top":8,"right":8,"bottom":24,"left":86}'
+      ></basic-line-chart>
+    </details>
+    <details>
+      <summary>sszvis line chart</summary>
+      <sszvis-line-chart
+        dataSrc="./data/BEV327V3270.csv"
+        title="Bevölkerungsentwicklung"
+        description=""
+        xCol="Jahr"
+        yCol="Anzahl"
+        cCol="Bevoelkerungsdefinition"
+        yLabel="Anzahl (Personen)"
+        xLabel="Jahr (Zeit)"
+        ticks="5"
+      ></sszvis-line-chart>
+    </details>
+    <details open>
+      <summary>Version 2</summary>
+      <sszvis-data-loader
+        dataSrc="./data/BEV327V3270.csv"
+        xCol="Jahr"
+        yCol="Anzahl"
+        cCol="Bevoelkerungsdefinition"
+      >
+        <sszvis-line-chart-2
+          slot="chart"
+          title="Bevölkerungsentwicklung"
+          description=""
+          yLabel="Anzahl (Personen)"
+          xLabel="Jahr (Zeit)"
+        ></sszvis-line-chart-2>
+        <sszvis-legend slot="legend"></sszvis-legend>
+      </sszvis-data-loader>
+    </details>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
