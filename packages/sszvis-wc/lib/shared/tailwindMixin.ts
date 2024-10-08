@@ -8,10 +8,13 @@ declare global {
 
 const stylesheet = unsafeCSS(style);
 
-export const TW = <T extends LitMixin>(superClass: T): T =>
+export const TW = <T extends LitMixin>(superClass: T, ...styles: string[]): T =>
   class extends superClass {
     connectedCallback() {
       super.connectedCallback();
-      if (this.shadowRoot) adoptStyles(this.shadowRoot, [stylesheet]);
+      if (this.shadowRoot) {
+        const stylesheets = [stylesheet, ...styles.map(style => unsafeCSS(style))];
+        adoptStyles(this.shadowRoot, stylesheets);
+      }
     }
   };
