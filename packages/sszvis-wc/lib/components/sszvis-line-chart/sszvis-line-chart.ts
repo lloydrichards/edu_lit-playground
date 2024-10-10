@@ -226,6 +226,7 @@ export class SSZVISLineChart extends TwLitElement {
 
   render() {
     return this._prepareState.render({
+      initial: () => html`<p>Initializing...</p>`,
       pending: () => html`<p>Loading csv data...</p>`,
       complete: () => {
         return html` <div id="sszvis-chart"></div> `;

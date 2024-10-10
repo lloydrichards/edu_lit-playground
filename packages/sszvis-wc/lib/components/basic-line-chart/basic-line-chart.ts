@@ -128,7 +128,7 @@ export class BasicLineChart extends TwLitElement {
       pending: () => html`<p>Loading product...</p>`,
       complete: () => html`
         <div class="w-full h-[300px]">
-          <svg width="${width}" height="${height}" class="overflow-visible">
+          <svg width="${width}" height="300" class="overflow-visible">
             <g transform="translate(${this.padding.left},${this.padding.top})">
               ${this.generateXAxis(innerHeight, innerWidth)}
               ${this.generateYAxis(innerHeight)}
