@@ -2,30 +2,31 @@ import { LitElement, PropertyValues } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import * as sszvis from "sszvis";
 import sszvisStylesheet from "sszvis/build/sszvis.css?inline";
-import { TW } from "../../shared/tailwindMixin";
+import { TW } from "../../../shared/tailwindMixin";
 
 import { consume } from "@lit/context";
-import { Bounds, Datum } from "../../types/domain";
-import { selectedContext } from "./act-layer";
+import { Bounds, Datum, SSZSelection } from "../../../types/domain";
+import { selectedContext } from "../act-layer";
 import {
+  aesLayerContext,
   boundsContext,
-  chartLayerContext,
   ScaleContext,
   scaleContext,
-} from "./ssz-chart";
+} from "../ssz-chart";
 
 const TwLitElement = TW(LitElement, sszvisStylesheet);
 
-@customElement("aes-layer")
-export class AESLayer extends TwLitElement {
-  @property({ type: String }) yLabel = "";
-  @property({ type: String }) xLabel = "";
+@customElement("ssz-x-axis")
+export class SSZXAxis extends TwLitElement {
+  @property({ type: String }) label = "";
   @property({ type: Number }) ticks = 10;
+  @property({ type: String }) orientation: "top" | "bottom" = "bottom";
 
   @consume({ context: selectedContext, subscribe: true })
   selection: Datum[] = [];
 
-  @consume({ context: chartLayerContext, subscribe: true }) chartLayer!: any;
+  @consume({ context: aesLayerContext, subscribe: true })
+  aesLayer!: SSZSelection;
   @consume({ context: scaleContext, subscribe: true }) scale!: ScaleContext;
   @consume({ context: boundsContext, subscribe: true })
   @state()
@@ -35,6 +36,7 @@ export class AESLayer extends TwLitElement {
 
   private isSelected(d: Datum) {
     if (!this.selection) return false;
+    console.log("selection", this.selection);
     return sszvis.contains(
       this.selection.map(this.xAcc).map(String),
       String(d)
@@ -42,44 +44,38 @@ export class AESLayer extends TwLitElement {
   }
 
   generateAxes() {
-    var xTickValues = this.scale.x.ticks(this.ticks);
+    var xTickValues = this.scale.x
+      .ticks(this.ticks)
+      .concat(this.selection.map(this.xAcc));
 
     var xAxis = sszvis.axisX
       .time()
       .scale(this.scale.x)
-      .orient("bottom")
+      .orient(this.orientation)
       .tickValues(xTickValues)
       .alignOuterLabels(true)
       .highlightTick(this.isSelected)
-      .title(this.xLabel);
+      .title(this.label);
 
-    var yAxis = sszvis
-      .axisY()
-      .scale(this.scale.y)
-      .orient("right")
-      .contour(true)
-      .tickLength(this.bounds.innerWidth)
-      .title(this.yLabel)
-      .dyTitle(-20);
-
-    this.chartLayer
+    this.aesLayer
       .selectGroup("xAxis")
-      .attr("transform", sszvis.translateString(0, this.bounds.innerHeight))
+      .attr(
+        "transform",
+        this.orientation == "bottom"
+          ? sszvis.translateString(0, this.bounds.innerHeight)
+          : sszvis.translateString(0, 0)
+      )
       .call(xAxis);
-
-    this.chartLayer.selectGroup("yAxis").call(yAxis);
   }
 
   protected update(changedProperties: PropertyValues): void {
     super.update(changedProperties);
-    if (changedProperties.has("bounds")) {
-      this.generateAxes();
-    }
+    this.generateAxes();
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    "aes-layer": AESLayer;
+    "ssz-x-axis": SSZXAxis;
   }
 }

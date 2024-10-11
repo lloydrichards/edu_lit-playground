@@ -5,13 +5,13 @@ import sszvisStylesheet from "sszvis/build/sszvis.css?inline";
 import { TW } from "../../shared/tailwindMixin";
 
 import { consume } from "@lit/context";
-import { Bounds, Datum } from "../../types/domain";
+import { Bounds, Datum, SSZSelection } from "../../types/domain";
 import { selectedContext } from "./act-layer";
 import {
+  annotationLayerContext,
   boundsContext,
-  chartLayerContext,
   ScaleContext,
-  scaleContext,
+  scaleContext
 } from "./ssz-chart";
 
 const TwLitElement = TW(LitElement, sszvisStylesheet);
@@ -21,7 +21,8 @@ export class GeomAnnotation extends TwLitElement {
   @consume({ context: selectedContext, subscribe: true })
   selection!: Datum[];
 
-  @consume({ context: chartLayerContext, subscribe: true }) chartLayer!: any;
+  @consume({ context: annotationLayerContext, subscribe: true })
+  annotationLayer!: SSZSelection;
   @consume({ context: scaleContext, subscribe: true }) scale!: ScaleContext;
   @consume({ context: boundsContext, subscribe: true })
   @state()
@@ -32,7 +33,7 @@ export class GeomAnnotation extends TwLitElement {
   private cAcc = (d: Datum) => d.category;
 
   generateRulerLines() {
-    if (!this.chartLayer) return;
+    if (!this.annotationLayer) return;
 
     var rulerLabel = sszvis
       .modularTextSVG()
@@ -56,15 +57,15 @@ export class GeomAnnotation extends TwLitElement {
       })
       .color(sszvis.compose(this.scale.c, this.cAcc));
 
-    this.chartLayer
+    this.annotationLayer
       .selectGroup("highlight")
       .datum(this.selection)
+      .attr("z", `10`)
       .call(highlightLayer);
   }
 
   protected update(changedProperties: PropertyValues): void {
     super.update(changedProperties);
-
     this.generateRulerLines();
   }
 }

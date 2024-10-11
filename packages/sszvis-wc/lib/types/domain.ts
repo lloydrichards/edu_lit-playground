@@ -13,3 +13,8 @@ export type Bounds = {
   screenWidth: number;
   width: number;
 };
+
+export type SSZSelection = Selection & {
+  selectGroup: any;
+  datum: any;
+};

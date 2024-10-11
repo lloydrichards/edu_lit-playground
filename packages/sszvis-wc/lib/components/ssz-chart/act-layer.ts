@@ -5,12 +5,16 @@ import sszvisStylesheet from "sszvis/build/sszvis.css?inline";
 import { TW } from "../../shared/tailwindMixin";
 
 import { consume, createContext, provide } from "@lit/context";
-import { Datum } from "../../types/domain";
+import { Datum, SSZSelection } from "../../types/domain";
 import {
   dataLoaderContext,
   DataLoaderContext,
 } from "../ssz-data-loader/ssz-data-loader";
-import { chartLayerContext, ScaleContext, scaleContext } from "./ssz-chart";
+import {
+  actLayerContext,
+  ScaleContext,
+  scaleContext
+} from "./ssz-chart";
 import { closestDatum } from "./utils";
 
 const TwLitElement = TW(LitElement, sszvisStylesheet);
@@ -45,7 +49,8 @@ export class ActLayer extends TwLitElement {
   @consume({ context: dataLoaderContext, subscribe: true })
   dataLoader!: DataLoaderContext;
 
-  @consume({ context: chartLayerContext, subscribe: true }) chartLayer!: any;
+  @consume({ context: actLayerContext, subscribe: true })
+  actLayer!: SSZSelection;
   @consume({ context: scaleContext, subscribe: true }) scale!: ScaleContext;
 
   private xAcc = (d: Datum) => new Date(d.xValue);
@@ -57,7 +62,7 @@ export class ActLayer extends TwLitElement {
   };
 
   generateInteractions() {
-    if (!this.chartLayer) return;
+    if (!this.actLayer) return;
     // Interaction
     var interactionLayer = sszvis
       .move()
@@ -66,7 +71,7 @@ export class ActLayer extends TwLitElement {
       .on("move", this.onDateChange)
       .on("end", this.resetDate);
 
-    this.chartLayer.selectGroup("interaction").call(interactionLayer);
+    this.actLayer.selectGroup("interaction").call(interactionLayer);
   }
 
   protected update(changedProperties: PropertyValues): void {

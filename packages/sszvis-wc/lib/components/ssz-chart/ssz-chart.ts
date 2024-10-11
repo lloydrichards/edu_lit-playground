@@ -12,7 +12,7 @@ import sszvisStylesheet from "sszvis/build/sszvis.css?inline";
 import { TW } from "../../shared/tailwindMixin";
 
 import { consume, createContext, provide } from "@lit/context";
-import { Bounds } from "../../types/domain";
+import { Bounds, SSZSelection } from "../../types/domain";
 import {
   dataLoaderContext,
   DataLoaderContext,
@@ -27,6 +27,13 @@ export type ScaleContext = {
 };
 
 export const chartLayerContext = createContext<any>(Symbol("chartLayerKey"));
+export const geomLayerContext = createContext<any>(Symbol("geomLayerKey"));
+export const aesLayerContext = createContext<any>(Symbol("aesLayerKey"));
+export const actLayerContext = createContext<any>(Symbol("actLayerKey"));
+export const annotationLayerContext = createContext<any>(
+  Symbol("annotationLayerKey")
+);
+
 export const scaleContext = createContext<ScaleContext>(Symbol("scaleKey"));
 export const boundsContext = createContext<Bounds>(Symbol("boundsKey"));
 
@@ -45,7 +52,12 @@ export class SSZChart extends TwLitElement {
   @consume({ context: dataLoaderContext, subscribe: true })
   dataLoader: DataLoaderContext = {} as DataLoaderContext;
 
-  @provide({ context: chartLayerContext }) chartLayer!: any;
+  @provide({ context: chartLayerContext }) chartLayer!: SSZSelection;
+  @provide({ context: geomLayerContext }) geomLayer!: SSZSelection;
+  @provide({ context: aesLayerContext }) aesLayer!: SSZSelection;
+  @provide({ context: actLayerContext }) actLayer!: SSZSelection;
+  @provide({ context: annotationLayerContext }) annotationLayer!: SSZSelection;
+
   @provide({ context: scaleContext }) scale: ScaleContext = {} as ScaleContext;
   @provide({ context: boundsContext }) bounds!: Bounds;
 
@@ -77,6 +89,13 @@ export class SSZChart extends TwLitElement {
         : sszvis.scaleQual6()
     ).domain(this.dataLoader.categorySet);
 
+    // Setup the layer order
+    this.aesLayer = this.chartLayer.selectGroup("aes");
+    this.geomLayer = this.chartLayer.selectGroup("geom");
+    this.annotationLayer = this.chartLayer.selectGroup("annotations");
+    this.actLayer = this.chartLayer.selectGroup("act");
+
+    // Responsiveness
     sszvis.viewport.on("resize", () => {
       this.requestUpdate();
     });
